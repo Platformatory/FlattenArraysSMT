@@ -1,0 +1,17 @@
+{
+    "name": "flatteningJdbcConnector",
+    "config": {
+        "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+        "table.name.format": "sfflattentrg",
+        "tasks.max": "1",
+        "topics": "jdbcsinktesttopic",
+        "schema.pattern": "dbo",
+        "auto.create": "true",
+        "connection.url": "jdbc:sqlserver://10.85.72.88:1433;database=Ebi_Poc;username=ebinextgen;password=",
+        "insert.mode": "insert",
+        "transforms":"UUIDField",
+        "transforms.UUIDField.type":"ch.yax.connect.quickstart.transforms.UUIDField$Value",
+        "transforms.UUIDField.field":"my-uuid"
+    }
+}
+

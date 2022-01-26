@@ -9,7 +9,9 @@ RUN mvn -B clean package --file pom.xml
 #########################################################
 # Custom Kafka Connect Docker image
 #########################################################
-FROM confluentinc/cp-kafka-connect-base:7.0.1
+FROM confluentinc/cp-server-connect-base:7.0.1
+
+ENV CONNECT_PLUGIN_PATH="/usr/share/java,/usr/share/confluent-hub-components"
 
 # Install connector plugins with the confluent-hub cli
 # confluent-hub install --no-prompt confluentinc/kafka-connect-jdbc:10.0.0
@@ -22,5 +24,4 @@ RUN confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:latest
 RUN confluent-hub install --no-prompt jcustenborder/kafka-connect-spooldir:latest
 
 # Add the Maven build target to the Kafka Connect plugin path.
-RUN mkdir /usr/share/java/quickstart
-COPY --from=build-stage /app/target/connect-quickstart-*.jar /usr/share/java/quickstart
+COPY --from=build-stage /app/target/connect-quickstart-*.jar /usr/share/confluent-hub-components

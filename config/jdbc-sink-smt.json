@@ -1,13 +1,13 @@
 {
-    "name": "flatteningJdbcConnector",
+    "name": "flatten-jdbc-sink",
     "config": {
         "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
-        "table.name.format": "sfflattentrg",
         "tasks.max": "1",
-        "topics": "jdbcsinktesttopic",
-        "schema.pattern": "dbo",
+        "topics": "test-topic-1",
+        "connection.url": "jdbc:postgresql://db:5432/confluent",
+        "connection.user": "confluent",
+        "connection.password": "example",
         "auto.create": "true",
-        "connection.url": "jdbc:postgresql://db:5432;database=confluent;username=confluent;password=example",
         "insert.mode": "insert",
         "transforms":"UUIDField",
         "transforms.UUIDField.type":"ch.yax.connect.quickstart.transforms.UUIDField$Value",

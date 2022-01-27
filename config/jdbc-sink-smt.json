@@ -7,11 +7,11 @@
         "topics": "jdbcsinktesttopic",
         "schema.pattern": "dbo",
         "auto.create": "true",
-        "connection.url": "jdbc:sqlserver://10.85.72.88:1433;database=Ebi_Poc;username=ebinextgen;password=",
+        "connection.url": "jdbc:postgresql://db:5432;database=confluent;username=confluent;password=example",
         "insert.mode": "insert",
         "transforms":"UUIDField",
         "transforms.UUIDField.type":"ch.yax.connect.quickstart.transforms.UUIDField$Value",
-        "transforms.UUIDField.field":"my-uuid"
+        "transforms.UUIDField.field":"uuid"
     }
 }
 

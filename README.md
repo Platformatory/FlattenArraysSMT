@@ -83,7 +83,7 @@ To deploy a connector,
 ```bash
 curl -X POST http://localhost:8083/connectors  \
     -H "Content-Type: application/json" \
-    --data @config/jdbc-sink-random-smt.json
+    --data @config/jdbc-sink-smt.json
 ```
 
 ### To add/modify connector plugins
@@ -101,7 +101,23 @@ RUN confluent-hub install --no-prompt confluentinc/kafka-connect-elasticsearch:l
 RUN confluent-hub install --no-prompt mongodb/kafka-connect-mongodb:latest
 RUN confluent-hub install --no-prompt jcustenborder/kafka-connect-spooldir:latest
 ```
+stop the containers.
+
+```bash
+docker-compose down
+```
+
+and then re run this command:
+
+```bash
+docker-compose up --build
+```
 
 ## TODO
-1. Tests
-2. CI/CD
+
+3. add a postgres container for jdbc sink
+4. confirm if trace logs happen
+5. python avro producer
+6. hot reload
+7. tests
+8. CI/CD

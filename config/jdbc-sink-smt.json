@@ -9,9 +9,9 @@
         "connection.password": "example",
         "auto.create": "true",
         "insert.mode": "insert",
-        "transforms":"UUIDField",
-        "transforms.UUIDField.type":"ch.yax.connect.quickstart.transforms.UUIDField$Value",
-        "transforms.UUIDField.field":"uuid"
+        "transforms": "flatten",
+        "transforms.flatten.type": "com.platformatory.connect.quickstart.transforms.Flatten$Value",
+        "transforms.flatten.delimiter": "_"
     }
 }
 

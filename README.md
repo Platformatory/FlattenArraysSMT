@@ -2,6 +2,8 @@
 
 ### Setup confluent cloud env vars
 
+If you are using Linux/WSL.
+
 ```bash
 export BOOTSTRAP_SERVERS="<CCLOUD_BOOTSTRAP_SERVER>"
 export SASL_JAAS_CONFIG="org.apache.kafka.common.security.plain.PlainLoginModule required username='<CCLOUD_API_KEY>' password='<CCLOUD_API_SECRET>';"
@@ -15,6 +17,8 @@ export CLOUD_SECRET="<CCLOUD_API_SECRET>"
 export KSQLDB_ENDPOINT=""
 export KSQLDB_BASIC_AUTH_USER_INFO=""
 ```
+
+Otherwise, edit the docker-compose.yml to manually point the above environment variables to their values.
 
 ### Build and Startup the Environment
 
@@ -42,10 +46,10 @@ file for the Kafka Connect service or override the settings in connector config.
 ```yaml
 environment:
   CONNECT_KEY_CONVERTER: io.confluent.connect.avro.AvroConverter
-  CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+  CONNECT_KEY_CONVERTER_SCHEMA_REGISTRY_URL: $SCHEMA_REGISTRY_URL
 
   CONNECT_VALUE_CONVERTER: io.confluent.connect.avro.AvroConverter
-  CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: http://schema-registry:8081
+  CONNECT_VALUE_CONVERTER_SCHEMA_REGISTRY_URL: $SCHEMA_REGISTRY_URL
 ```
 
 Or set the converter in connector config:
@@ -115,9 +119,14 @@ docker-compose up --build
 
 ## TODO
 
-3. add a postgres container for jdbc sink
-4. confirm if trace logs happen
+3. ~add a postgres container for jdbc sink~
+4. ~confirm if trace logs happen~
 5. python avro producer
-6. hot reload
-7. tests
+6. ~hot reload~
+7. ~tests~
 8. CI/CD
+
+
+## Legalese
+
+Copyright © 2022 [Platformatory](https://platformatory.io/) | See [LICENCE](LICENSE) for full details.

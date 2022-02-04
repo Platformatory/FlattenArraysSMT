@@ -1,1 +1,1 @@
-ch.yax.connect.quickstart.config.provider.EnvironmentConfigProvider
+com.platformatory.connect.quickstart.config.provider.EnvironmentConfigProvider

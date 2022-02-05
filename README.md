@@ -117,11 +117,62 @@ and then re run this command:
 docker-compose up --build
 ```
 
+## How to test
+
+Install the python kafka client library.
+
+```bash
+pip install "confluent-kafka[avro]"
+```
+
+Configure the `producer.py` file to point to your confluent cluster.
+
+```python
+avroProducer = AvroProducer({
+    'bootstrap.servers': 'xxx-zzzzz.us-west4.gcp.confluent.cloud:9092',
+    'on_delivery': delivery_report,
+    'sasl.mechanism': 'PLAIN',
+    'security.protocol': 'SASL_SSL',
+    'sasl.username': 'YYYYYYYYYY',
+    'sasl.password': 'XXXX',
+    'schema.registry.basic.auth.credentials.source': 'USER_INFO',
+    'schema.registry.basic.auth.user.info': 'USERNAME:PASSWORD',
+    'schema.registry.url': 'https://xxx-zzzzz.us-central1.gcp.confluent.cloud'
+    }, default_key_schema=key_schema, default_value_schema=value_schema)
+```
+
+Run the producer script to generate sample records.
+
+```bash
+python producer.py
+```
+
+Install JDBC sink connector configured with custom flatten.
+
+```bash
+curl -X POST http://localhost:8083/connectors -H "Content-Type: application/json" --data @config/jdbc-sink-smt.json
+```
+
+Once the connector picks up messages, it will show up on the table. This can be verified by loading the database in `http://localhost:8080`.
+
+Postgres credentials are configured in `docker-compose.yml`.
+
+```yaml
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+      POSTGRES_USER: confluent
+```
+
+DB name is same as username. This will create a table with the same name as the topic and add the sample records from producer to the table.
+
 ## TODO
 
 3. ~add a postgres container for jdbc sink~
 4. ~confirm if trace logs happen~
-5. python avro producer
+5. ~python avro producer~
 6. ~hot reload~
 7. ~tests~
 8. CI/CD

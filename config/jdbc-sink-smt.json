@@ -10,7 +10,7 @@
         "auto.create": "true",
         "insert.mode": "insert",
         "transforms": "flatten",
-        "transforms.flatten.type": "com.platformatory.connect.quickstart.transforms.Flatten$Value",
+        "transforms.flatten.type": "com.platformatory.connect.transforms.Flatten$Value",
         "transforms.flatten.delimiter": "_"
     }
 }

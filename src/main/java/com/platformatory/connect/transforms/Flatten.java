@@ -1,4 +1,4 @@
-package com.platformatory.connect.quickstart.transforms;
+package com.platformatory.connect.transforms;
 
 import static org.apache.kafka.connect.transforms.util.Requirements.requireMap;
 import static org.apache.kafka.connect.transforms.util.Requirements.requireStructOrNull;
